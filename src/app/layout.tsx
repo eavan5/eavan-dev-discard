@@ -20,7 +20,7 @@ export default function RootLayout ({
     <html lang="en">
       <body>
         <QueryProvider>
-          <div className="relative text-zinc-800 dark:text-zinc-200">
+          <div className="relative text-zinc-800 dark:text-zinc-200 min-h-screen">
             <Header />
             <main>{children}</main>
           </div>
