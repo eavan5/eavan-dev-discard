@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/app/QueryProvider";
 import { Header } from "@/app/(main)/Header";
+import Footer from "./(main)/Footer";
+import { ThemeProvider } from 'next-themes'
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +18,21 @@ export default function RootLayout ({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
       <body>
-        <QueryProvider>
-          <div className="relative text-zinc-800 dark:text-zinc-200 min-h-screen">
-            <Header />
-            <main>{children}</main>
-          </div>
-        </QueryProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <QueryProvider>
+            <div className="relative text-light-text dark:text-dark-text bg-light-background dark:bg-dark-background min-h-screen">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

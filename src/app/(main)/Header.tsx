@@ -3,8 +3,14 @@
 import { Container } from "@/components/ui/Container"
 import "@theme-toggles/react/css/Around.css"
 import { Around } from "@theme-toggles/react"
+import { useTheme } from "next-themes"
 
 export function Header () {
+  const { setTheme, theme, resolvedTheme } = useTheme()
+  function toggleTheme () {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }
+
   return (
     <header>
       <Container>
@@ -61,7 +67,7 @@ export function Header () {
           </div>
           <div>
             {/* @ts-ignore */}
-            <Around duration={750} className="scale-150" />
+            <Around duration={750} onToggle={toggleTheme} className="scale-150" />
           </div>
         </div>
       </Container>

@@ -19,13 +19,13 @@ function Introduction ({ className, ...props }: React.ComponentPropsWithoutRef<'
 
     <div className={classNames(className, "flex items-center justify-center  sm:px-8 lg:px-10")} {...props}>
       <div>
-        <div className="border border-black inline-block px-4 rounded-lg">Hi there,I'm Eavan 👋</div>
-        <div className="text-lg sm:text-3xl lg:text-5xl  font-black text-zinc-700 mb-8 py-2">
+        <div className="border border-light-border dark:border-dark-border inline-block px-4 rounded-lg">Hi there,I'm Eavan 👋</div>
+        <div className="text-lg sm:text-3xl lg:text-5xl  font-black text-text-100 mb-8 py-2">
           Development engineer,<br />
           Founder, and<br />
           Aspiring designer.
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:block text-text-200">
           Welcome to my blog! Explore digital marketing, entrepreneurship, and design insights.
           Join me on this journey of knowledge, inspiration, and growth. Let's learn and grow together!
         </div>

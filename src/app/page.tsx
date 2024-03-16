@@ -1,20 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import Image from "next/image";
 import Headline from "./(main)/Headline";
+import { Articles } from "./(main)/Articles";
+import NewsLetter from "./(main)/NewsLetter";
 
 export default function Home () {
   return (
     <>
       <Container>
         <Headline />
-
-        <h1>Home</h1>
-        <Image
-          src="/vercel.svg"
-          alt="Vercel Logo"
-          width={72}
-          height={16}
-        />
+        <Articles />
+        <NewsLetter />
       </Container>
     </>
   );
