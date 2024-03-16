@@ -18,6 +18,9 @@ const config: Config = {
 				'120': '30rem',
 				'128': '32rem',
 			},
+			aspectRatio: {
+				'3/4': '3/4',
+			},
 			colors: {
 				light: {
 					primary: '#0d3b66',

@@ -1,9 +1,10 @@
 'use client'
 
-import { Container } from "@/components/ui/Container"
+import { Container } from "../../components/ui/Container"
 import "@theme-toggles/react/css/Around.css"
 import { Around } from "@theme-toggles/react"
 import { useTheme } from "next-themes"
+import Link from 'next/link'
 
 export function Header () {
   const { setTheme, theme, resolvedTheme } = useTheme()
@@ -22,7 +23,7 @@ export function Header () {
             <div className="sm:hidden">
               <label htmlFor="Tab" className="sr-only">Tab</label>
 
-              <select
+              {/* <select
                 id="Tab"
                 className="w-full rounded-md border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
               >
@@ -30,38 +31,43 @@ export function Header () {
                 <option>Messages</option>
                 <option>Archive</option>
                 <option >Notifications</option>
-              </select>
+              </select> */}
             </div>
 
             <div className="hidden sm:block">
               <nav className="flex gap-6" aria-label="Tabs">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
                 >
                   主页
-                </a>
-
-                <a
+                </Link>
+                <Link
+                  href="/articles"
+                  className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
+                >
+                  文章
+                </Link>
+                <Link
                   href="#"
                   className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
                 >
                   运动
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="#"
                   className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
                 >
                   阅读
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="shrink-0 rounded-lg bg-gray-100 p-2 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200"
                   aria-current="page"
                 >
                   关于
-                </a>
+                </Link>
               </nav>
             </div>
           </div>
@@ -71,7 +77,7 @@ export function Header () {
           </div>
         </div>
       </Container>
-      <div className="border border-gray-100 mx-4 sm:mx-6 lg:mx-10 my-4" />
+      <div className="border border-light-border dark:border-dark-border mx-4 sm:mx-6 lg:mx-10 my-4" />
     </header>
   )
 }
