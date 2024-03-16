@@ -12,6 +12,11 @@ const config: Config = {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
+			spacing: {
+				'116': '29rem',
+				'120': '30rem',
+				'128': '32rem',
+			},
 		},
 	},
 	plugins: [require('daisyui')],

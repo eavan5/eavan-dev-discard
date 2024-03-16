@@ -65,7 +65,7 @@ export function Header () {
           </div>
         </div>
       </Container>
-      <div className="divider px-4 sm:px-6 lg:px-8 my-0"></div>
+      <div className="border border-gray-100 mx-4 sm:mx-6 lg:mx-10 my-4" />
     </header>
   )
 }
