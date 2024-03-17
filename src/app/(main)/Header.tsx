@@ -5,20 +5,32 @@ import "@theme-toggles/react/css/Around.css"
 import { Around } from "@theme-toggles/react"
 import { useTheme } from "next-themes"
 import Link from 'next/link'
+import { useEffect, useState } from "react"
 
 export function Header () {
+
   const { setTheme, theme, resolvedTheme } = useTheme()
+
+  const [isDark, setDark] = useState(false)
+
+  useEffect(() => {
+    setDark(theme === 'dark')
+  }, [])
+
   function toggleTheme () {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+    setTimeout(() => {
+      setTheme(theme === 'dark' ? 'light' : 'dark')
+    }, 1000);
+    setDark(theme !== 'dark')
   }
 
   return (
     <header>
       <Container>
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-semibold">
+          <Link href='/' className="text-2xl font-semibold">
             Eavan
-          </div>
+          </Link>
           <div>
             <div className="sm:hidden">
               <label htmlFor="Tab" className="sr-only">Tab</label>
@@ -36,12 +48,6 @@ export function Header () {
 
             <div className="hidden sm:block">
               <nav className="flex gap-6" aria-label="Tabs">
-                <Link
-                  href="/"
-                  className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
-                >
-                  主页
-                </Link>
                 <Link
                   href="/articles"
                   className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
@@ -73,7 +79,7 @@ export function Header () {
           </div>
           <div>
             {/* @ts-ignore */}
-            <Around duration={750} onToggle={toggleTheme} className="scale-150" />
+            <Around duration={750} onToggle={toggleTheme} toggled={isDark} className="scale-150" />
           </div>
         </div>
       </Container>
