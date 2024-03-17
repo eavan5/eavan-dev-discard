@@ -57,6 +57,7 @@ export function Header () {
                 {
                   routeMap.map(({ path, name }) => (
                     <Link
+                      key={path}
                       href={path}
                       className={classNames("shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200", activeStyle(path))}
                     >

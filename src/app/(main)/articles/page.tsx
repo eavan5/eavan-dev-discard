@@ -1,6 +1,13 @@
-export default function Articles () {
+import { Container } from "@/components/ui/Container"
+import Articles from "../Articles"
+
+export default function ArticlesPage () {
 
   return (
-    1234
+    <>
+      <Container>
+        <Articles title="全部文章" limit={8} />
+      </Container>
+    </>
   )
 }
