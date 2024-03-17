@@ -5,24 +5,39 @@ import "@theme-toggles/react/css/Around.css"
 import { Around } from "@theme-toggles/react"
 import { useTheme } from "next-themes"
 import Link from 'next/link'
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
+import classNames from "classnames"
 
 export function Header () {
-
   const { setTheme, theme, resolvedTheme } = useTheme()
-
   const [isDark, setDark] = useState(false)
-
   useEffect(() => {
     setDark(theme === 'dark')
   }, [])
-
   function toggleTheme () {
     setTimeout(() => {
       setTheme(theme === 'dark' ? 'light' : 'dark')
-    }, 1000);
+    }, 750);
     setDark(theme !== 'dark')
   }
+
+
+  const currentStyle = 'shrink-0 rounded-lg bg-gray-50 p-2 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200'
+
+  const activeStyle = useCallback((path: string) => {
+    const routePath = usePathname()
+    return routePath === path ? currentStyle : ''
+  }, [])
+
+  const routeMap = [
+    { path: '/', name: '主页' },
+    { path: '/articles', name: '文章' },
+    { path: '/sports', name: '运动' },
+    { path: '/read', name: '阅读' },
+    { path: '/about', name: '关于' },
+  ]
+
 
   return (
     <header>
@@ -33,47 +48,23 @@ export function Header () {
           </Link>
           <div>
             <div className="sm:hidden">
+              {/* //todo */}
               <label htmlFor="Tab" className="sr-only">Tab</label>
-
-              {/* <select
-                id="Tab"
-                className="w-full rounded-md border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-              >
-                <option selected>Settings</option>
-                <option>Messages</option>
-                <option>Archive</option>
-                <option >Notifications</option>
-              </select> */}
             </div>
 
             <div className="hidden sm:block">
               <nav className="flex gap-6" aria-label="Tabs">
-                <Link
-                  href="/articles"
-                  className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
-                >
-                  文章
-                </Link>
-                <Link
-                  href="#"
-                  className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
-                >
-                  运动
-                </Link>
+                {
+                  routeMap.map(({ path, name }) => (
+                    <Link
+                      href={path}
+                      className={classNames("shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200", activeStyle(path))}
+                    >
+                      {name}
+                    </Link>
+                  ))
+                }
 
-                <Link
-                  href="#"
-                  className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-200"
-                >
-                  阅读
-                </Link>
-                <Link
-                  href="#"
-                  className="shrink-0 rounded-lg bg-gray-100 p-2 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                  aria-current="page"
-                >
-                  关于
-                </Link>
               </nav>
             </div>
           </div>
